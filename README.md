@@ -37,6 +37,7 @@ An MCP server that enables LLM agents to talk with IFC (Industry Foundation Clas
   }
 }
 ```
+[!basic_demo](250608_ifcMCP_demo_acc.gif)
 
 # contributors
 Jia-Rui Lin (lin611#tsinghua.edu.cn)
