@@ -152,14 +152,17 @@ def get_openings_on_wall(file_path:str, globalId:str):
     
     results=[]
     if wall.HasOpenings and len(wall.HasOpenings)>0:
-        for opening in wall.HasOpenings:
-            ele=opening.RelatingBuildingElement
-            if ele:
-                results.append({
-                    'globalId':ele.GlobalId,
-                    'type':ele.is_a(),
-                    'name':ele.Name
-                })
+        for relOpening in wall.HasOpenings:
+            opening=relOpening.RelatedOpeningElement
+            if not (opening and opening.HasFillings and len(opening.HasFillings)>0): continue
+            for relFilling in opening.HasFillings:
+                ele=relFilling.RelatedBuildingElement
+                if ele:
+                    results.append({
+                        'globalId':ele.GlobalId,
+                        'type':ele.is_a(),
+                        'name':ele.Name
+                    })
     return results
 
 @mcp.tool()
